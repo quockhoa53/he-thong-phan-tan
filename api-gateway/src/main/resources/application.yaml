@@ -1,0 +1,21 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: racing-service
+          uri: http://IP_MAY_A:8080
+          predicates:
+            - Path=/racing/**
+          filters:
+            - StripPrefix=1
+
+        - id: shoes-service
+          uri: http://IP_MAY_B:8081
+          predicates:
+            - Path=/shoes/**
+          filters:
+            - StripPrefix=1
